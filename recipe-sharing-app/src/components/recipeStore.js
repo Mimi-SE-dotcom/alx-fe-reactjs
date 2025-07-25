@@ -7,16 +7,6 @@ export const useRecipeStore = create((set) => ({
   setRecipes: (recipes) => set({ recipes }),
   import { create } from 'zustand';
 
-export const useRecipeStore = create((set) => ({
-  recipes: [],
-
-  // Add a new recipe
-  addRecipe: (newRecipe) =>
-    set((state) => ({ recipes: [...state.recipes, newRecipe] })),
-
-  // Set all recipes
-  setRecipes: (recipes) => set({ recipes }),
-
   // Update an existing recipe
   updateRecipe: (updatedRecipe) =>
     set((state) => ({
