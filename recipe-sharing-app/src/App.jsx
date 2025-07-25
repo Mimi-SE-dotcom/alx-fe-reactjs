@@ -1,4 +1,5 @@
-import React from 'react';
+import FavoritesList from './components/FavoritesList';
+import RecommendationsList from './components/RecommendationsList';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RecipeList from './components/RecipeList';
 import AddRecipeForm from './components/AddRecipeForm';
@@ -10,6 +11,8 @@ function App() {
     <Router>
       <div style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto' }}>
         <h1>Recipe Sharing App</h1>
+        <FavoritesList />
+        <RecommendationsList /> 
         <SearchBar />
         <AddRecipeForm />
         <Routes>
