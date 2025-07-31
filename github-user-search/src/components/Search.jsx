@@ -27,7 +27,7 @@ export default function Search() {
 
   return (
     <div className="max-w-md mx-auto">
-      <form onSubmit={handleSubmit} className="mb-4">
+      <form onSubmit={handleSubmit} className="mb-4 flex flex-col gap-2">
         <input
           type="text"
           placeholder="Search GitHub username"
@@ -35,26 +35,32 @@ export default function Search() {
           onChange={(e) => setUsername(e.target.value)}
           className="border p-2 w-full rounded"
         />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Search
+        </button>
       </form>
 
       {loading && <p>Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
 
       {user && (
-        <div className="border rounded p-4 shadow">
+        <div className="border rounded p-4 shadow text-center">
           <img
             src={user.avatar_url}
             alt={user.login}
-            className="w-20 h-20 rounded-full mb-2"
+            className="w-20 h-20 rounded-full mx-auto mb-2"
           />
-          <h2 className="font-bold">{user.name || user.login}</h2>
+          <h2 className="font-bold text-lg">{user.name || user.login}</h2>
           <a
             href={user.html_url}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 underline"
           >
-            View Profile
+            View GitHub Profile
           </a>
         </div>
       )}
