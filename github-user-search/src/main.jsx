@@ -1,4 +1,5 @@
 import { StrictMode } from 'react'
+import './index.css'; // or 'main.css' depending on what your CSS file is named 
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'

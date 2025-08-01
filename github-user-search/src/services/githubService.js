@@ -11,4 +11,4 @@ export async function searchUsers({ username, location, minRepos }) {
 
   // You can also return response.data.items if needed
   return response.data.items;
-}
+};
