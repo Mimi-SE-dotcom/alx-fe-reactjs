@@ -38,6 +38,14 @@ function HomePage() {
               >
                 View Details →
               </Link>
+              <div className="flex justify-center mb-6">
+              <Link
+               to="/add"
+                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow"
+              >
+               ➕ Add New Recipe
+            </Link>
+            </div>
             </div>
           </div>
         ))}
