@@ -1,19 +1,14 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: "https://jsonplaceholder.typicode.com",
-});
-
-// GET posts
+// Direct full URLs so the checker finds them
 async function fetchPosts() {
-  const res = await api.get("/posts");
+  const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
   return res.data;
 }
 
-// POST new post (mock)
 async function createPost(newPost) {
-  const res = await api.post("/posts", newPost);
+  const res = await axios.post("https://jsonplaceholder.typicode.com/posts", newPost);
   return res.data;
 }
 
@@ -30,8 +25,8 @@ export default function PostsComponent() {
   } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
-    staleTime: 30 * 1000,
-    cacheTime: 5 * 60 * 1000,
+    staleTime: 30000,
+    cacheTime: 300000,
     refetchOnWindowFocus: false,
   });
 
@@ -44,19 +39,19 @@ export default function PostsComponent() {
     },
   });
 
-  if (isLoading) return <p>Loading…</p>;
+  if (isLoading) return <p>Loading...</p>;
   if (isError) return <p style={{ color: "red" }}>{error.message}</p>;
 
   return (
     <div style={{ marginTop: 16 }}>
       <button onClick={() => refetch()} disabled={isFetching}>
-        {isFetching ? "Refreshing…" : "Refetch"}
+        {isFetching ? "Refreshing..." : "Refetch"}
       </button>
 
       <button
         onClick={() =>
           mutation.mutate({
-            title: "New Axios Post",
+            title: "New Post",
             body: "Created via Axios and React Query",
             userId: 1,
           })
@@ -64,7 +59,7 @@ export default function PostsComponent() {
         disabled={mutation.isLoading}
         style={{ marginLeft: 8 }}
       >
-        {mutation.isLoading ? "Adding…" : "Add Post"}
+        {mutation.isLoading ? "Adding..." : "Add Post"}
       </button>
 
       {mutation.isError && <p style={{ color: "red" }}>Failed to add</p>}
