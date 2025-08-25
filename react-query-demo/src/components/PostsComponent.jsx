@@ -27,6 +27,7 @@ export default function PostsComponent() {
     queryFn: fetchPosts,
     staleTime: 30000,
     cacheTime: 300000,
+    keepPreviousData:true,
     refetchOnWindowFocus: false,
   });
 
