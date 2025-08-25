@@ -7,7 +7,8 @@ function RegistrationForm() {
     password: "",
   });
 
-  // Destructure for easier usage
+  const [errors, setErrors] = useState({});
+
   const { username, email, password } = formData;
 
   const handleChange = (e) => {
@@ -20,12 +21,24 @@ function RegistrationForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!username || !email || !password) {
-      alert("All fields are required");
-      return;
+    const newErrors = {};
+
+    if (!username) {
+      newErrors.username = "Username is required";
     }
-    console.log("Form submitted:", formData);
-    // API call can be placed here
+    if (!email) {
+      newErrors.email = "Email is required";
+    }
+    if (!password) {
+      newErrors.password = "Password is required";
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      console.log("Form submitted:", formData);
+      // Mock API call can go here
+    }
   };
 
   return (
@@ -37,6 +50,7 @@ function RegistrationForm() {
           value={username}
           onChange={handleChange}
         />
+        {errors.username && <span style={{ color: "red" }}>{errors.username}</span>}
       </div>
 
       <div>
@@ -47,6 +61,7 @@ function RegistrationForm() {
           value={email}
           onChange={handleChange}
         />
+        {errors.email && <span style={{ color: "red" }}>{errors.email}</span>}
       </div>
 
       <div>
@@ -57,6 +72,7 @@ function RegistrationForm() {
           value={password}
           onChange={handleChange}
         />
+        {errors.password && <span style={{ color: "red" }}>{errors.password}</span>}
       </div>
 
       <button type="submit">Register</button>
