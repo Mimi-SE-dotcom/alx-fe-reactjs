@@ -1,4 +1,12 @@
-import { Outlet, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
+
+function ProfileDetails() {
+  return <h3>Profile Details Section</h3>;
+}
+
+function ProfileSettings() {
+  return <h3>Profile Settings Section</h3>;
+}
 
 export default function Profile() {
   return (
@@ -9,8 +17,10 @@ export default function Profile() {
         <Link to="settings">Profile Settings</Link>
       </nav>
       <hr />
-      {/* Nested routes render here */}
-      <Outlet />
+      <Routes>
+        <Route path="details" element={<ProfileDetails />} />
+        <Route path="settings" element={<ProfileSettings />} />
+      </Routes>
     </div>
   );
 }
